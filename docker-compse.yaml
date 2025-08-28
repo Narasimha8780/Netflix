@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  web:
+    container_name: tmdb-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # passed to ARG TMDB_V3_API_KEY in the Dockerfile
+        TMDB_V3_API_KEY: ${TMDB_V3_API_KEY}
+    ports:
+      - "8080:80"   # host:container
+    restart: unless-stopped
